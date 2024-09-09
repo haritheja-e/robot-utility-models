@@ -1,0 +1,43 @@
+
+
+defaults:
+  - env_vars: env_vars
+  - model: resnet_dobb-e
+  - loss_fn: diffusion_policy_loss
+  - _self_
+
+
+image_save_dir: ${env_vars.project_root}/robot_images
+image_buffer_size: 6
+device: cpu
+
+task: door_opening
+
+policy_type: transformer
+action_sequence_length: 6
+num_extra_actions: 5
+obs_window_size: 6
+
+run_offline: false
+use_depth: false
+
+robot_params:
+  h: 0.6
+  max_h: 0.06
+  max_base: 0.08
+  abs_gripper: True
+  rot_unit: axis #can be euler
+
+network:
+  host: "127.0.0.1"
+  remote: "127.0.0.1"
+  camera_port: 32922
+  action_port: 8081
+  flag_port: 2828
+
+
+wandb:
+  entity: ${env_vars.wandb.entity}
+  project: imitation-in-homes
+  id: null
+  save_code: true

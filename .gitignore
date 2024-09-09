@@ -1,0 +1,54 @@
+#add notebooks to gitignore
+
+*.ipynb
+*.out
+*.err
+*.sbatch
+*.jpg
+
+outputs/
+weights/
+wandb/
+vis/
+checkpoints/
+robot_images/
+temp/
+robot_rt/
+visualizations/
+
+wandb/
+r3d_files/
+
+#add __pycache__ to gitignore
+
+__pycache__/
+*.py[cod]
+
+
+logs/accelerate
+configs/accelerate
+
+
+#ignore weights files
+
+*.pth
+*.pt
+
+# ignore vscode
+.vscode
+.cache
+
+*.png
+*.mp4
+
+run_rt.py
+wandb
+checkpoints
+multirun
+notebooks
+
+*.sbatch
+wrapper.sh
+*.sh
+
+.venv

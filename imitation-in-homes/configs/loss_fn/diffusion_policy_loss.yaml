@@ -1,0 +1,17 @@
+_target_: loss_fns.diffusion_policy_loss_fn.DiffusionPolicyLossFn
+tokenized_bet: false
+action_dim: 7
+obs_dim: 512
+xyz_only: false
+mask_last_min: 0
+mask_last_max: 0
+learned_mask: False
+use_depth: ${use_depth}
+device: ${device}
+policy_type: ${policy_type}
+
+
+action_sequence_length: ${action_sequence_length} # SHOULD be same with ("num_extra_actions" + 1) of diffusion_policy_train.yaml
+obs_window_size: ${obs_window_size} # SHOULD be same with "sequence_length" of diffusion_policy_train.yaml
+data_act_scale: 1.0 # diffusion policy hyperparameter. (make sure that the maximum value of normalized data is in (-1 ~ 1))
+data_obs_scale: 1.0 # diffusion policy hyperparameter. (make sure that the maximum value of normalized data is in (-1 ~ 1))

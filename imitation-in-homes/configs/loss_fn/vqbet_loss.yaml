@@ -1,0 +1,33 @@
+_target_: loss_fns.vqbet_loss_fn.VQBeTLossFn
+tokenized_bet: false
+action_dim: 7
+xyz_only: false
+mask_last_min: 0
+mask_last_max: 0
+learned_mask: False
+use_depth: ${use_depth}
+device: ${device}
+
+gpt_model:
+  _target_: models.bet.gpt.GPT
+  config:
+    _target_: models.bet.gpt.GPTConfig
+    block_size: 50
+    input_dim: 256
+    n_layer: 6
+    n_head: 6
+    n_embd: 120
+
+action_sequence_length: 1 # should be same with rvq pre-training
+vqvae_n_latent_dims: 512 # should be same with rvq pre-training
+vqvae_n_embed: ${vqvae_n_embed} # should be same with rvq pre-training
+vqvae_groups: 2 # should be same with rvq pre-training
+
+vqvae_load_dir: ${vqvae_load_dir} # path of the pretrained vq-bet
+
+offset_loss_multiplier: 10. # vq-bet hyperparameter tuning
+secondary_code_multiplier: 0.5 # vq-bet hyperparameter tuning
+obs_window_size: 3 # SHOULD be same with "sequence_length" of vqbet_train.yaml
+gamma: 2.0
+sequentially_select: ${sequentially_select}
+temperature: ${temperature}

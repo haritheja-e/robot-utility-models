@@ -1,0 +1,67 @@
+defaults:
+- env_vars: env_vars
+- dataset: vqbet_train
+- model: resnet_dobb-e
+- loss_fn: vqbet_loss
+- _self_
+
+num_epochs: 501
+eval_every: 5
+device: cuda
+batch_size: 50
+sampler: null
+use_depth: False
+freeze_encoder: False
+sequentially_select: True
+split_training: True
+train_freeze_ratio: 0.98
+
+include_task: Door_Opening
+include_env: all
+
+vqvae_load_dir: checkpoints/2024-03-19/Door_Opening-all-15-29-38-rvq-n_embed-16-timeskip-7/checkpoint.pt
+vqvae_n_embed: 16 # should be same with rvq pre-training
+temperature: 2.0
+control_timeskip: 7
+
+batch_sampler:
+  _target_: dataloaders.decord_dataset.DecordBatchSampler
+  batch_size: ${batch_size}
+
+dataloader:
+  _target_: dataloaders.decord_dataloader.DecordVideoLoader
+  device: cpu
+  num_workers: 9
+  persistent_workers: false
+  pin_memory: true
+  prefetch_factor: 4
+
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 3e-4
+  weight_decay: 0.0001
+  betas:
+    - 0.9
+    - 0.95
+clip_gradient_norm: 1.0
+
+scheduler:
+  _target_: utils.schedulers.CosineAnnealWithWarmupLR
+  warmup_epochs: 10
+  lr_decay_epochs: ${num_epochs}
+
+# Model saving and loading
+model_path: checkpoints/${now:%Y-%m-%d}/${include_task}-${include_env}-${now:%H-%M-%S}-vqbet-n_embed-${vqvae_n_embed}-depth-${use_depth}-dobb-e-temp-${temperature}-seq-select-${sequentially_select}-split-train-${split_training}-frozen-enc-${freeze_encoder}-timeskip-${control_timeskip}
+files_list_path: r3d_files/${now:%Y-%m-%d}/${include_task}-${include_env}-${now:%H-%M-%S}-vqbet-n_embed-${vqvae_n_embed}-depth-${use_depth}-dobb-e-temp-${temperature}-seq-select-${sequentially_select}-split-train-${split_training}-frozen-enc-${freeze_encoder}-timeskip-${control_timeskip}
+resume_training: false
+save_every: 5
+description: "(description)"
+
+wandb:
+  entity: ${env_vars.wandb.entity}
+  project: vqbet-${include_task}
+  name: ${include_task}-${include_env}-vqbet-n_embed-${vqvae_n_embed}-depth-${use_depth}-dobb-e-temp-${temperature}-seq-select-${sequentially_select}-split-train-${split_training}-frozen-enc-${freeze_encoder}-timeskip-${control_timeskip}
+  id: null
+  save_code: true
+
+seed: 42

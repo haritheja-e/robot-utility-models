@@ -1,0 +1,4 @@
+project_root: /path/to/robot-utility-models/imitation-in-homes # path to the imitation-in-homes folder
+
+wandb:
+    entity: username  # wandb username

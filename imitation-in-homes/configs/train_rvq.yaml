@@ -1,0 +1,62 @@
+defaults:
+- env_vars: env_vars
+- dataset: rvq_pretrain
+- model: identity_encoder
+- loss_fn: rvq_loss
+- _self_
+
+num_epochs: 1001
+eval_every: 100
+device: cuda
+batch_size: 2048
+sampler: null
+use_depth: True
+freeze_encoder: False
+train_freeze_ratio: 1
+
+include_task: Door_Opening
+include_env: all
+vqvae_n_embed: 16 # vq-bet hyperparameter tuning
+control_timeskip: 7
+
+batch_sampler:
+  _target_: dataloaders.decord_dataset.DecordBatchSampler
+  batch_size: ${batch_size}
+
+dataloader:
+  _target_: dataloaders.decord_dataloader.DecordVideoLoader
+  device: cpu
+  num_workers: 9
+  persistent_workers: false
+  pin_memory: true
+  prefetch_factor: 4
+
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 3e-4
+  weight_decay: 0.0001
+  betas:
+    - 0.9
+    - 0.95
+clip_gradient_norm: 1.0
+
+scheduler:
+  _target_: utils.schedulers.CosineAnnealWithWarmupLR
+  warmup_epochs: 6
+  lr_decay_epochs: ${num_epochs}
+
+# Model saving and loading
+model_path: checkpoints/${now:%Y-%m-%d}/${include_task}-${include_env}-${now:%H-%M-%S}-rvq-n_embed-${vqvae_n_embed}-timeskip-${control_timeskip}
+files_list_path: r3d_files/${now:%Y-%m-%d}/${include_task}-${include_env}-${now:%H-%M-%S}-rvq-n_embed-${vqvae_n_embed}-timeskip-${control_timeskip}
+resume_training: false
+save_every: 100
+description: "(description)"
+
+wandb:
+  entity: ${env_vars.wandb.entity}
+  project: rvq-${include_task}
+  name: ${include_task}-${include_env}-rvq-n_embed-${vqvae_n_embed}-timeskip-${control_timeskip}
+  id: null
+  save_code: true
+
+seed: 42
