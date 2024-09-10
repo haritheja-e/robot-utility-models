@@ -1,7 +1,7 @@
 ![preview](https://github.com/user-attachments/assets/42097e44-5413-497b-8a2c-54142e0ad052)
 # Robot Utility Models
 
-<!-- [![arXiv](https://img.shields.io/badge/arXiv-2311.16098-163144.svg?style=for-the-badge)](TODO) -->
+[![arXiv](https://img.shields.io/badge/arXiv-2409.05865-163144.svg?style=for-the-badge)](https://arxiv.org/abs/2409.05865)
 ![License](https://img.shields.io/github/license/notmahi/bet?color=873a7e&style=for-the-badge)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.3.1-db6a4b.svg?style=for-the-badge&logo=pytorch)](https://pytorch.org/get-started/locally/)
 
@@ -24,16 +24,19 @@ https://github.com/user-attachments/assets/dc13bcdb-238a-448c-a2ad-27fc15d194f6
 4. [`robot-server`](robot-server) contains code that is run on the robot to deploy the policy.
 
 ## Paper
-![paper_preview](https://github.com/user-attachments/assets/251bd61f-18a5-4a92-ba01-e524edd3269b)
-Get it from our [website](https://robotutilitymodels.com/#paper).
+[![Paper Preview](https://github.com/user-attachments/assets/251bd61f-18a5-4a92-ba01-e524edd3269b)](https://arxiv.org/abs/2409.05865)
+Get it from [arXiv](https://arxiv.org/abs/2409.05865) or our [website](https://robotutilitymodels.com/#paper).
 
 
 ## Citation
 If you find any of our work useful, please cite us!
 <pre>
-@article{etukuru2024robot,
-  title={General Policies for Zero-Shot Deployment in New Environments},
-  author={Etukuru, Haritheja and Naka, Norihito and Hu, Zijin and Mehu, Julian and Edsinger, Aaron and Paxton, Chris and Chintala, Soumith and Pinto, Lerrel and Shafiullah, Nur Muhammad Mahi},
-  year={2024}
+@misc{etukuru2024robot,
+      title={Robot Utility Models: General Policies for Zero-Shot Deployment in New Environments}, 
+      author={Haritheja Etukuru and Norihito Naka and Zijin Hu and Seungjae Lee and Julian Mehu and Aaron Edsinger and Chris Paxton and Soumith Chintala and Lerrel Pinto and Nur Muhammad Mahi Shafiullah},
+      year={2024},
+      eprint={2409.05865},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO}
 }
 </pre>
