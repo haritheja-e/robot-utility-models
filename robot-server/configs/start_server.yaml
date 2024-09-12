@@ -11,7 +11,7 @@ robot_cfg:
   stretch_gripper_max: 150
   stretch_gripper_min: 0
   stretch_gripper_tight: -35
-  sticky_gripper: true
+  sticky_gripper: false
   closing_threshold: 0.85
   reopening_threshold: 0.8
   # Value below should be null if we want it to be computed from 
