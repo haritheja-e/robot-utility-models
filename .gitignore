@@ -50,5 +50,6 @@ notebooks
 *.sbatch
 wrapper.sh
 *.sh
+api_keys.py
 
 .venv

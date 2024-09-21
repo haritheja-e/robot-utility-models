@@ -11,6 +11,7 @@ image_buffer_size: 3
 device: cpu
 
 task: door_opening
+use_head_cam: true
 
 vqvae_load_dir: null
 vqvae_n_embed: 16
@@ -31,6 +32,7 @@ network:
   host: "127.0.0.1"
   remote: "127.0.0.1"
   camera_port: 32922
+  head_camera_port: 29893
   action_port: 8081
   flag_port: 2828
 

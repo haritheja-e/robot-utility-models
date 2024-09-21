@@ -24,10 +24,11 @@ class StartServer(ProcessInstantiator):
 
     #Function to start camera process
     def _init_camera_process(self):
-        self.processes.append(Process(
-            target = self._start_component,
-            args = (self.configs.camera, )
-        ))
+        for camera in self.configs.camera.keys():
+            self.processes.append(Process(
+                target = self._start_component,
+                args = (self.configs.camera[camera], )
+            ))
 
     def _init_robot_process(self):
         self.processes.append(Process(

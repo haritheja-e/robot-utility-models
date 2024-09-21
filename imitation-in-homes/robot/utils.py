@@ -47,7 +47,7 @@ def schedule_init(controller, max_h=0.055, max_base=0.08):
 
 
 class AsyncImageActionSaver:
-    def __init__(self, folder=None):
+    def __init__(self, folder=None, cfg=None):
         if folder is None:
             # set folder to current directory
             folder = Path.cwd()
@@ -57,9 +57,12 @@ class AsyncImageActionSaver:
         self.save_dir = None
         self.count = 0
         self.img_threads = []
+        self.head_img_threads = []
         self.action_threads = []
         if not os.path.exists(self.folder):
             os.makedirs(self.folder)
+        
+        self.cfg = cfg
 
     def save_image_async(self, image_data, file_path):
         cv2.imwrite(str(file_path), image_data)
@@ -88,6 +91,12 @@ class AsyncImageActionSaver:
             os.makedirs(self.save_nbhrs_dir)
             self.save_depths_dir = self.save_dir / Path("depths")
             os.makedirs(self.save_depths_dir)
+            self.head_img_dir = self.save_dir / Path("head_cam")
+            os.makedirs(self.head_img_dir)
+            
+            if self.cfg is not None:
+                with open(self.save_dir / Path("cfg.txt"), "w") as f:
+                    f.write(str(self.cfg))
 
     def save_image(self, image, nbhr=-1):
         self.create_save_dir_if_not_exists()
@@ -101,6 +110,15 @@ class AsyncImageActionSaver:
             )
         thread = Thread(target=self.save_image_async, args=(image, file_path))
         self.img_threads.append(thread)
+        thread.start()
+    
+    def save_head_image(self, head_cam_img):
+        self.create_save_dir_if_not_exists()
+
+        file_path = self.head_img_dir / Path(str(self.count - 1) + ".jpg")
+
+        thread = Thread(target=self.save_image_async, args=(head_cam_img, file_path))
+        self.head_img_threads.append(thread)
         thread.start()
 
     def save_action(self, action_list):
@@ -118,9 +136,12 @@ class AsyncImageActionSaver:
     def finish(self):
         for thread in self.img_threads:
             thread.join()
+        for thread in self.head_img_threads:
+            thread.join()
         for thread in self.action_threads:
             thread.join()
         self.img_threads = []
+        self.head_img_threads = []
         self.action_threads = []
 
         self.count = 0
@@ -172,6 +193,10 @@ class ImageActionBufferManager:
             self.async_saver.save_action(action)
         self.action_buffer.append(action)
         self.action_list.append(action)
+    
+    def save_head_img(self, img):
+        if self.async_saver is not None:
+            self.async_saver.save_head_image(img)
 
     def get_input_tensor_sequence(self):
         img_seq = torch.stack([img for img in self.image_buffer])

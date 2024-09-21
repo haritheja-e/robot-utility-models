@@ -1,4 +1,5 @@
-_target_: camera.publisher.R3DCameraPublisher
-host: ${network.host_address}
-port: ${network.camera_port}
-use_depth: ${use_depth}
+camera1:
+  _target_: camera.publisher.R3DCameraPublisher
+  host: ${network.host_address}
+  port: ${network.camera_port}
+  use_depth: ${use_depth}
