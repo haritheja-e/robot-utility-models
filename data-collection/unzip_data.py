@@ -69,7 +69,7 @@ def extract_all_zip_files_in_tree_recursively(
         if file_or_folder.endswith(".zip"):
             file = file_or_folder
             zip_file = os.path.join(path, file)
-            if current_stack[-1].startswith("Env"):
+            if current_stack[-1].lower().startswith("env"):
                 new_folder = os.path.join(*current_stack)
             else:
                 new_folder = os.path.join(*current_stack, file)[:-4]
