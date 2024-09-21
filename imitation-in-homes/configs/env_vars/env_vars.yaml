@@ -1,4 +1,13 @@
 project_root: /path/to/robot-utility-models/imitation-in-homes # path to the imitation-in-homes folder
 
+data_root: 
+    train: /path/to/train_dataset
+    val: /path/to/test_dataset
+
+# path included in r3d_files.txt of dataset (may be the same as data_root if data has not been moved nor transferred across machines)
+data_original_root: 
+    train: /path/to/path_in_train_r3d_files 
+    val: /path/to/path_in_val_r3d_files
+
 wandb:
     entity: username  # wandb username

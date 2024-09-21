@@ -16,10 +16,10 @@ sequentially_select: True
 split_training: True
 train_freeze_ratio: 0.98
 
-include_task: Door_Opening
+include_task: task_name # a folder named with this task name must be in the dataset root provided in configs/env_vars/env_vars.yaml
 include_env: all
 
-vqvae_load_dir: checkpoints/2024-03-19/Door_Opening-all-15-29-38-rvq-n_embed-16-timeskip-7/checkpoint.pt
+vqvae_load_dir: /path/to/your_rvq
 vqvae_n_embed: 16 # should be same with rvq pre-training
 temperature: 2.0
 control_timeskip: 7

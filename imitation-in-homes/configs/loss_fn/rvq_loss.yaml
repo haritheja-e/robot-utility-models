@@ -1,0 +1,13 @@
+_target_: loss_fns.rvq_loss_fn.RVQLossFn
+tokenized_bet: false
+action_dim: 7
+xyz_only: false
+mask_last_min: 0
+mask_last_max: 0
+gpt_input_dim: 256
+# trainable_obs_padding: True
+learned_mask: False
+action_sequence_length: 1 # vq-bet hyperparameter tuning
+vqvae_n_latent_dims: 512 # vq-bet hyperparameter tuning
+vqvae_n_embed: ${vqvae_n_embed} # vq-bet hyperparameter tuning
+vqvae_groups: 2 # vq-bet hyperparameter tuning

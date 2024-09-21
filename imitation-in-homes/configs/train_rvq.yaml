@@ -14,7 +14,7 @@ use_depth: True
 freeze_encoder: False
 train_freeze_ratio: 1
 
-include_task: Door_Opening
+include_task: task_name # folder with this task name must be in the dataset root provided in env_vars
 include_env: all
 vqvae_n_embed: 16 # vq-bet hyperparameter tuning
 control_timeskip: 7

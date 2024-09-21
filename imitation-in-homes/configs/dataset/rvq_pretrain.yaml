@@ -2,11 +2,11 @@ train:
   _target_: dataloaders.extended_action_dataset.ExtendedActionDataset
   config:
     _target_: dataloaders.utils.DataLoaderConfig
-    dataset_root: ${env_vars.finetune_task_data_root.train}
+    dataset_root: ${env_vars.data_root.train}
     trajectory_roots:
       _target_: dataloaders.utils.load_trajectory_roots
       trajectory_root_path: ${dataset.train.config.dataset_root}/r3d_files.txt
-      original_root: ${env_vars.finetune_task_data_original_root.train}
+      original_root: ${env_vars.data_original_root.train}
       new_root: ${dataset.train.config.dataset_root}
     include_tasks: 
       - ${include_task}
@@ -28,11 +28,11 @@ test:
   _target_: dataloaders.extended_action_dataset.ExtendedActionDataset
   config:
     _target_: dataloaders.utils.DataLoaderConfig
-    dataset_root: ${env_vars.finetune_task_data_root.val}
+    dataset_root: ${env_vars.data_root.val}
     trajectory_roots:
       _target_: dataloaders.utils.load_trajectory_roots
       trajectory_root_path: ${dataset.test.config.dataset_root}/r3d_files.txt
-      original_root: ${env_vars.finetune_task_data_original_root.val}
+      original_root: ${env_vars.data_original_root.val}
       new_root: ${dataset.test.config.dataset_root}
     include_tasks: 
       - ${include_task}
