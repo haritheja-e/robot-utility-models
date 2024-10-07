@@ -62,6 +62,7 @@ class LabelFreeImageFolder(ImageFolder):
         class_to_idx: Dict[str, int] = dict(),
         extensions: Optional[Tuple[str, ...]] = None,
         is_valid_file: Optional[Callable[[str], bool]] = None,
+        allow_empty: bool = False,
     ) -> List[Tuple[str, int]]:
         """Generates a list of samples of a form (path_to_sample, class).
 
@@ -321,7 +322,7 @@ class R3DZipFileProcessor:
                 continue
             image_path = os.path.join(rgb_path, f)
             img = cv2.imread(image_path)
-            
+
             # Compress the image.
             compressed_img = cv2.resize(img, (256, 256))
             cv2.imwrite(os.path.join(compressed_path, f), compressed_img)
