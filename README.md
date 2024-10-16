@@ -31,12 +31,10 @@ Get it from [arXiv](https://arxiv.org/abs/2409.05865) or our [website](https://r
 ## Citation
 If you find any of our work useful, please cite us!
 <pre>
-@misc{etukuru2024robot,
-      title={Robot Utility Models: General Policies for Zero-Shot Deployment in New Environments}, 
-      author={Haritheja Etukuru and Norihito Naka and Zijin Hu and Seungjae Lee and Julian Mehu and Aaron Edsinger and Chris Paxton and Soumith Chintala and Lerrel Pinto and Nur Muhammad Mahi Shafiullah},
-      year={2024},
-      eprint={2409.05865},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO}
+@article{etukuru2024robot,
+    title={Robot Utility Models: General Policies for Zero-Shot Deployment in New Environments}, 
+    author={Haritheja Etukuru and Norihito Naka and Zijin Hu and Seungjae Lee and Julian Mehu and Aaron Edsinger and Chris Paxton and Soumith Chintala and Lerrel Pinto and Nur Muhammad Mahi Shafiullah},
+    journal={arXiv preprint arXiv:2409.05865},
+    year={2024}
 }
 </pre>
