@@ -1,6 +1,18 @@
 import numpy as np
-import PyKDL
 import os
+from scipy.spatial.transform import Rotation as R
+
+def create_transform(vec):
+    x,y,z,rx,ry,rz = vec
+    transform = np.eye(4)
+    transform[:3,:3] = R.from_euler('xyz', [rx,ry,rz], degrees=True).as_matrix()
+    transform[:3,3] = [x,y,z]
+    return transform
+
+def transform_to_vec(transform):
+    x,y,z = transform[:3,3]
+    rx,ry,rz = R.from_matrix(transform[:3,:3]).as_euler('xyz', degrees=True)
+    return [x,y,z,rx,ry,rz]
 
 
 def euler_to_quat(r, p, y):
@@ -15,6 +27,7 @@ def euler_to_quat(r, p, y):
 
 
 def urdf_joint_to_kdl_joint(jnt):
+    import PyKDL
     kdl = PyKDL
     origin_frame = urdf_pose_to_kdl_frame(jnt.origin)
     if jnt.joint_type == "fixed":
@@ -41,6 +54,7 @@ def urdf_joint_to_kdl_joint(jnt):
 
 
 def urdf_pose_to_kdl_frame(pose):
+    import PyKDL
     kdl = PyKDL
     pos = [0.0, 0.0, 0.0]
     rot = [0.0, 0.0, 0.0]
@@ -53,6 +67,7 @@ def urdf_pose_to_kdl_frame(pose):
 
 
 def urdf_inertial_to_kdl_rbi(i):
+    import PyKDL
     kdl = PyKDL
     origin = urdf_pose_to_kdl_frame(i.origin)
     rbi = kdl.RigidBodyInertia(
@@ -73,6 +88,7 @@ def urdf_inertial_to_kdl_rbi(i):
 ##
 # Returns a PyKDL.Tree generated from a urdf_parser_py.urdf.URDF object.
 def kdl_tree_from_urdf_model(urdf):
+    import PyKDL
     kdl = PyKDL
     root = urdf.get_root()
     tree = kdl.Tree(root)
