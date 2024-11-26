@@ -12,6 +12,7 @@ device: cpu
 
 task: door_opening
 use_head_cam: true
+use_gpt: false
 
 vqvae_load_dir: null
 vqvae_n_embed: 16

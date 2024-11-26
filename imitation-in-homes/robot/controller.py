@@ -21,7 +21,6 @@ from .utils import (
     ImageDepthActionBufferManager,
     schedule_init,
 )
-from robot.openai_client import OpenAIClient
 
 def get_home_param(h=0.5, y=0.02, x=0.0, yaw=0.0, pitch=0.0, roll=0.0, gripper=1.0):
     """
@@ -102,7 +101,9 @@ class Controller:
         else:
             self._goal_conditional = False
 
-        self.openai_client = OpenAIClient(cfg["task"], cfg["image_save_dir"])
+        if cfg.get("use_gpt") is True:
+            from robot.openai_client import OpenAIClient
+            self.openai_client = OpenAIClient(cfg["task"], cfg["image_save_dir"])
 
     def setup_model(self, model):
         self.model = model
