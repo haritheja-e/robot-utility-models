@@ -19,11 +19,11 @@ Ensure you've created the `home_robot` mamba environment from the first 3 steps 
           dataset/
           |--- task1/
           |------ home1/
-          |--------- env1/
+          |--------- Env1/
           |------------ {data_file}.zip
-          |--------- env2/
+          |--------- Env2/
           |------------ {data_file}.zip
-          |--------- env.../
+          |--------- Env.../
           |------------ {data_file}.zip
           |------ home2/
           |------ home.../
