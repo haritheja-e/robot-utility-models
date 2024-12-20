@@ -5,7 +5,7 @@
 ![License](https://img.shields.io/github/license/notmahi/bet?color=873a7e&style=for-the-badge)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.3.1-db6a4b.svg?style=for-the-badge&logo=pytorch)](https://pytorch.org/get-started/locally/)
 
-[Project webpage](https://robotutilitymodels.com) · [Documentation](https://educated-diascia-662.notion.site/Setting-Up-Running-Zero-Shot-Models-on-Hello-Robot-66658ab1a6454f219e0fb1db1baa9d6f) · [Paper](https://robotutilitymodels.com/mfiles/paper/Robot_Utility_Models.pdf)
+[Project webpage](https://robotutilitymodels.com) · [Documentation](https://robotutilitymodels.com/docs/) · [Paper](https://robotutilitymodels.com/mfiles/paper/Robot_Utility_Models.pdf)
 
 **Authors**: [Haritheja Etukuru*](https://haritheja.com/), Norihito Naka, [Zijin Hu](https://zij1n.github.io/), [Seungjae Lee](https://sjlee.cc/), [Julian Mehu](https://www.linkedin.com/in/julian-mehu-6aa76725/), [Aaron Edsinger](https://www.linkedin.com/in/aaron-edsinger/), [Chris Paxton](https://cpaxton.github.io/), [Soumith Chintala](https://soumith.ch/), [Lerrel Pinto](https://lerrelpinto.com/), [Nur Muhammad “Mahi” Shafiullah*](https://mahis.life/)
 
